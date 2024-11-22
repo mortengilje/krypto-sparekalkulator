@@ -1,0 +1,125 @@
+/* General Page Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #cdd6f4; /* Soft white text */
+  background-color: #1e1e2e; /* Dark background */
+}
+
+header {
+  background: #282a36; /* Darker header */
+  color: #cdd6f4;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo img {
+  max-height: 50px;
+}
+
+nav a {
+  margin: 0 15px;
+  color: #cdd6f4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  color: #79c0ff; /* Light blue */
+}
+
+a {
+  color: #79c0ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.cta-button {
+  background: #007BFF;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+}
+
+.cta-button:hover {
+  background: #0056b3;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 15px 0;
+}
+
+ul li a {
+  display: block;
+  padding: 15px;
+  border: 1px solid #3b3b52; /* Darker border for list items */
+  border-radius: 8px;
+  background: #282a36; /* Slightly lighter background */
+  transition: background 0.3s;
+}
+
+ul li a:hover {
+  background: #3b3b52; /* Slight hover effect */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #282a36;
+  color: #cdd6f4;
+  position: relative;
+}
+
+footer a {
+  color: #79c0ff;
+  font-weight: bold;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+}
+
+.slider-container input[type="range"] {
+  flex: 1;
+  margin-right: 10px;
+}
+
+input, button {
+  background: #2a2a3b;
+  border: 1px solid #3b3b52;
+  color: #cdd6f4;
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: #007BFF;
+  color: white;
+}

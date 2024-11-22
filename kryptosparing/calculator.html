@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Beregn hvordan din kryptoportefølje kan vokse med vår sparekalkulator. Enkel å bruke og perfekt for langsiktig investering i Bitcoin.">
+  <title>Krypto Sparekalkulator</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="assets/logo.png" alt="Kryptosparing.no Logo"></a>
+    </div>
+    <nav>
+      <a href="index.html">Hjem</a>
+      <a href="calculator.html">Kalkulator</a>
+      <a href="blog.html">Blogg</a>
+      <a href="referrals.html">Bonus</a>
+      <a href="ai-expert.html">AI Krypto-ekspert</a>
+      <a href="about.html">Om Oss</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="calculator">
+      <h1>Krypto Sparekalkulator</h1>
+      <p>Bruk kalkulatoren nedenfor for å beregne hvordan kryptoporteføljen din kan vokse over tid.</p>
+
+      <form id="crypto-calculator">
+        <label for="initial">Startbeløp:</label>
+        <input type="text" id="initial" placeholder="0 kr" value="0 kr" onfocus="clearDefault(this)" oninput="formatInput(this)">
+
+        <label for="monthly">Månedlig Sparing:</label>
+        <input type="text" id="monthly" placeholder="0 kr" value="0 kr" onfocus="clearDefault(this)" oninput="formatInput(this)">
+
+        <label for="rate">Forventet Årlig Avkastning:</label>
+        <div class="slider-container">
+          <input type="range" id="rate" min="1" max="200" value="7" class="slider" oninput="updateRateLabel()">
+          <span id="rateLabel">7%</span>
+        </div>
+
+        <label for="years">Hvor mange år vil du spare?</label>
+        <div class="slider-container">
+          <input type="range" id="years" min="1" max="50" value="10" class="slider" oninput="updateYearsLabel()">
+          <span id="yearsLabel">10 år</span>
+        </div>
+
+        <button id="calculateButton" onclick="calculate()">Beregn din krypto portefølje</button>
+      </form>
+
+      <div id="result" class="result" style="display: none;">
+        <div id="resultValue"></div>
+        <p id="resultExplanation"></p>
+        <div class="firi-info">
+          <p>
+            Start din reise på <a href="https://firi.com/affiliate?referral=4323df4a" target="_blank">Firi i dag</a>
+            og få <strong>55 kr i velkomstbonus!</strong>
+          </p>
+          <p>Firi er Norges største kryptobørs med over 240 000 brukere.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 Kryptosparing.no – Alt om krypto på norsk. | <a href="about.html">Om Oss</a></p>
+  </footer>
+
+  <script>
+    function clearDefault(input) {
+      if (input.value === "0 kr") {
+        input.value = "";
+      }
+    }
+
+    function formatInput(input) {
+      let value = input.value.replace(/\s+/g, '').replace('kr', ''); // Remove spaces and "kr"
+      value = value.replace(/\D/g, ''); // Remove non-numeric characters
+      input.value = value ? value.replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " kr" : "0 kr"; // Add "kr" and space formatting
+    }
+
+    function updateRateLabel() {
+      const rateValue = document.getElementById('rate').value;
+      document.getElementById('rateLabel').innerText = rateValue + "%";
+    }
+
+    function updateYearsLabel() {
+      const yearsValue = document.getElementById('years').value;
+      document.getElementById('yearsLabel').innerText = yearsValue + " år";
+    }
+
+    function calculate() {
+      event.preventDefault(); // Prevent form submission
+
+      const initial = Math.round(parseFloat(document.getElementById('initial').value.replace(/\s+/g, '').replace('kr', '')) || 0);
+      const monthly = Math.round(parseFloat(document.getElementById('monthly').value.replace(/\s+/g, '').replace('kr', '')) || 0);
+      const rate = parseFloat(document.getElementById('rate').value) || 0;
+      const years = parseInt(document.getElementById('years').value) || 0;
+
+      const annualRate = rate / 100;
+      const months = years * 12;
+
+      const futureValue =
+        Math.round(initial * Math.pow(1 + annualRate, years) +
+        (monthly * (Math.pow(1 + annualRate / 12, months) - 1)) / (annualRate / 12));
+
+      const resultValue = document.getElementById('resultValue');
+      const resultExplanation = document.getElementById('resultExplanation');
+      const result = document.getElementById('result');
+
+      resultValue.textContent = `${futureValue.toLocaleString('no-NO')} kr`;
+      resultExplanation.textContent = `Tallet over viser hva din kryptoportefølje kan være verdt om du starter med et beløp på ${initial.toLocaleString('no-NO')} kr, sparer ${monthly.toLocaleString('no-NO')} kr i måneden, og oppnår en årlig avkastning på ${rate}% over ${years} år. Jo tidligere du starter, desto større kan gevinsten bli!`;
+
+      result.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
